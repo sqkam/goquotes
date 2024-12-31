@@ -58,6 +58,7 @@ func main() {
 
 	c := colly.NewCollector(
 		colly.AllowedDomains("www.goodreads.com"),
+		colly.Async(true),
 	)
 
 	// extract all the quotes that are on the page
@@ -92,6 +93,7 @@ func main() {
 	fmt.Println("Launching Scraper !")
 	c.Visit(fmt.Sprintf(searchString, theme))
 
+	c.Wait()
 	fmt.Printf("Scraped %d quotes.\n\n", len(quotes))
 
 	var quotesString []string
